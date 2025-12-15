@@ -3,13 +3,13 @@ import { Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#ff8c00] text-white">
+    <footer className="bg-primary text-white">
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid gap-12 md:grid-cols-4">
           {/* Brand Info */}
           <div>
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#ff8c00] font-bold">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-primary font-bold">
                 NM
               </div>
               <h3 className="text-2xl font-bold tracking-tight text-white">
@@ -127,7 +127,7 @@ export function SiteFooter() {
                   target="_blank"
                   className="
                     flex h-9 w-9 items-center justify-center rounded-full 
-                    bg-white text-[#ff8c00] shadow-md 
+                    bg-white text-primary shadow-md 
                     transition-all duration-300 
                     hover:scale-110 hover:shadow-lg hover:bg-gray-100
                   "
