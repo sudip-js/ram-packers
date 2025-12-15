@@ -1,6 +1,9 @@
+import { businessConfig } from "@/config/business";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function ContactInfo() {
+  const { name, contact, address } = businessConfig;
+
   return (
     <div className="flex flex-col justify-between rounded-2xl bg-white p-8 shadow-sm">
       <div>
@@ -9,32 +12,35 @@ export default function ContactInfo() {
         </h2>
 
         <div className="space-y-4 text-sm text-gray-700">
+          {/* Address */}
           <p className="flex items-start gap-3">
             <MapPin className="h-5 w-5 text-primary shrink-0" />
             <span>
-              Office 23, Sector 62, Noida,
+              {address.line1}, {address.city},
               <br />
-              Uttar Pradesh, India
+              {address.state}, {address.country} – {address.postalCode}
             </span>
           </p>
 
+          {/* Phone */}
           <p className="flex items-center gap-3">
             <Phone className="h-5 w-5 text-primary shrink-0" />
             <a
-              href="tel:+919876543210"
+              href={`tel:${contact.phone}`}
               className="hover:text-primary transition-colors"
             >
-              +91 98765 43210
+              {contact.phone}
             </a>
           </p>
 
+          {/* Email */}
           <p className="flex items-center gap-3">
             <Mail className="h-5 w-5 text-primary shrink-0" />
             <a
-              href="mailto:info@noidamovers.in"
+              href={`mailto:${contact.email}`}
               className="hover:text-primary transition-colors"
             >
-              info@noidamovers.in
+              {contact.email}
             </a>
           </p>
         </div>
@@ -43,8 +49,8 @@ export default function ContactInfo() {
       {/* Map preview */}
       <div className="mt-8 h-[220px] overflow-hidden rounded-xl">
         <iframe
-          title="Company Location"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=77.35,28.58,77.38,28.62&layer=mapnik"
+          title={`${name} Location`}
+          src={`https://www.openstreetmap.org/export/embed.html?bbox=77.31,28.57,77.37,28.63&layer=mapnik&marker=28.60,77.34`}
           className="h-full w-full border-0"
           loading="lazy"
         ></iframe>

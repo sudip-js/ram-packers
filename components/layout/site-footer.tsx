@@ -1,25 +1,35 @@
 import Link from "next/link";
 import { Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
+import { businessConfig } from "@/config/business";
 
 export function SiteFooter() {
+  const { name, contact, address, socials } = businessConfig;
+
+  // Generate initials automatically (e.g. "Ram Packers" → "RP")
+  const logoInitials = name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-[#ff8c00] text-white">
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid gap-12 md:grid-cols-4">
           {/* Brand Info */}
           <div>
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-primary font-bold">
-                NM
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#ff8c00] font-bold">
+                {logoInitials}
               </div>
               <h3 className="text-2xl font-bold tracking-tight text-white">
-                Noida Movers
+                {name}
               </h3>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-white/90">
-              Fast & secure packers and movers service in Noida & across India.
-              We deliver your trust with every move — safe, on-time, and
-              stress-free.
+              Reliable & secure packers and movers service in {address.city} &
+              across India. We deliver your trust with every move — safe,
+              on-time, and stress-free.
             </p>
           </div>
 
@@ -34,9 +44,8 @@ export function SiteFooter() {
                 { label: "Terms & Conditions", href: "/terms" },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="
+                  <span
+                    className=" cursor-pointer
                       relative inline-block 
                       transition-all duration-300 
                       hover:text-white
@@ -47,7 +56,7 @@ export function SiteFooter() {
                     "
                   >
                     {link.label}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -81,60 +90,61 @@ export function SiteFooter() {
               Get in Touch
             </h4>
             <ul className="space-y-4 text-[15px] text-white/90">
+              {/* Address */}
               <li className="flex items-start gap-3 group">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 group-hover:bg-white/25 transition-all duration-300">
                   <MapPin className="h-4 w-4 text-white" />
                 </div>
                 <span className="max-w-[220px] leading-snug">
-                  Office 23, Sector 62, Noida, Uttar Pradesh, India
+                  {address.line1}, {address.city}, {address.state},{" "}
+                  {address.country}
                 </span>
               </li>
 
+              {/* Phone */}
               <li className="flex items-center gap-3 group">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 group-hover:bg-white/25 transition-all duration-300">
                   <Phone className="h-4 w-4 text-white" />
                 </div>
-                <a
-                  href="tel:+919876543210"
-                  className="hover:text-white font-medium transition-all duration-300 hover:translate-x-[2px]"
-                >
-                  +91 98765 43210
-                </a>
+                <span className="max-w-[220px] leading-snug">
+                  {contact.phone}
+                </span>
               </li>
 
+              {/* Email */}
               <li className="flex items-center gap-3 group">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 group-hover:bg-white/25 transition-all duration-300">
                   <Mail className="h-4 w-4 text-white" />
                 </div>
-                <a
-                  href="mailto:info@noidamovers.in"
-                  className="hover:text-white font-medium transition-all duration-300 hover:translate-x-[2px]"
-                >
-                  info@noidamovers.in
-                </a>
+                <span className="max-w-[220px] leading-snug">
+                  {contact.email}
+                </span>
               </li>
             </ul>
 
             {/* Social Icons */}
             <div className="mt-5 flex gap-3">
               {[
-                { icon: Facebook, href: "https://facebook.com" },
-                { icon: Instagram, href: "https://instagram.com" },
-              ].map(({ icon: Icon, href }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  target="_blank"
-                  className="
-                    flex h-9 w-9 items-center justify-center rounded-full 
-                    bg-white text-primary shadow-md 
-                    transition-all duration-300 
-                    hover:scale-110 hover:shadow-lg hover:bg-gray-100
-                  "
-                >
-                  <Icon className="h-4 w-4" />
-                </Link>
-              ))}
+                { icon: Facebook, href: socials.facebook },
+                { icon: Instagram, href: socials.instagram },
+              ].map(
+                ({ icon: Icon, href }) =>
+                  href && (
+                    <Link
+                      key={href}
+                      href={href}
+                      target="_blank"
+                      className="
+                        flex h-9 w-9 items-center justify-center rounded-full 
+                        bg-white text-[#ff8c00] shadow-md 
+                        transition-all duration-300 
+                        hover:scale-110 hover:shadow-lg hover:bg-gray-100
+                      "
+                    >
+                      <Icon className="h-4 w-4" />
+                    </Link>
+                  )
+              )}
             </div>
           </div>
         </div>
@@ -146,8 +156,8 @@ export function SiteFooter() {
         <div className="mt-6 flex flex-col items-center justify-between gap-3 text-center text-sm text-white/90 md:flex-row">
           <p>
             © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-white">Noida Movers</span>. All
-            rights reserved.
+            <span className="font-semibold text-white">{name}</span>. All rights
+            reserved.
           </p>
         </div>
       </div>

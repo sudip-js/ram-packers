@@ -1,41 +1,46 @@
 "use client";
 
+import { businessConfig } from "@/config/business";
 import FaqItem from "./faq-item";
 
-const faqData = [
-  {
-    question: "How can I book a move with Noida Movers?",
-    answer:
-      "You can easily book a move through our website. Enter your pickup and drop location, select vehicle type, and confirm your booking in just a few clicks.",
-  },
-  {
-    question: "Do you provide interstate moving services?",
-    answer:
-      "Yes! We handle both within-city and interstate goods transportation safely and efficiently across India.",
-  },
-  {
-    question: "How are moving charges calculated?",
-    answer:
-      "Our charges depend on the distance, type of goods, and vehicle selected. You’ll get an instant cost estimate before confirming the booking.",
-  },
-  {
-    question: "Do you provide packing materials?",
-    answer:
-      "Yes, our team offers high-quality packing materials and can assist with packing and unpacking services as needed.",
-  },
-  {
-    question: "Is my shipment insured?",
-    answer:
-      "Yes, all our moves are insured. We ensure the safety of your goods during transit with proper coverage options.",
-  },
-  {
-    question: "Can I track my shipment live?",
-    answer:
-      "Absolutely! Once your booking is confirmed, you can track your shipment live through our website’s tracking page.",
-  },
-];
-
 export default function FaqList() {
+  const { name, address } = businessConfig;
+
+  const faqData = [
+    {
+      question: `How can I book a move with ${name}?`,
+      answer: `You can easily book your move through our website or by contacting us on WhatsApp. Just enter your pickup and drop location, choose the vehicle type, and confirm your booking in a few simple steps. Our team in ${address.city} will take care of the rest.`,
+    },
+    {
+      question: "Do you provide interstate moving services?",
+      answer: `${name} handles both local and interstate relocations safely and efficiently across India. Whether you’re shifting within ${address.city} or to another state, we ensure a hassle-free experience.`,
+    },
+    {
+      question: "How are moving charges calculated?",
+      answer:
+        "Our charges depend on multiple factors — the distance between locations, the type and volume of goods, and the vehicle size. You’ll receive a transparent cost estimate before confirming your booking.",
+    },
+    {
+      question: "Do you provide packing materials?",
+      answer:
+        "Yes, our professional team provides high-quality packing materials and can assist with complete packing and unpacking services to ensure maximum safety of your belongings.",
+    },
+    {
+      question: "Is my shipment insured?",
+      answer:
+        "Absolutely. Every move is covered under transit insurance options, so your goods remain protected against any accidental damage or loss during transportation.",
+    },
+    {
+      question: "Can I track my shipment live?",
+      answer:
+        "Yes! Once your booking is confirmed, you’ll receive a tracking ID that lets you monitor your shipment status live through our website’s tracking page or via customer support.",
+    },
+    {
+      question: "Do you offer doorstep service in Noida?",
+      answer: `${name} provides complete doorstep pickup and delivery services across Noida, ${address.state}, and nearby areas. Our team reaches your location on time and handles everything from loading to unloading.`,
+    },
+  ];
+
   return (
     <div className="space-y-4">
       {faqData.map((item, index) => (

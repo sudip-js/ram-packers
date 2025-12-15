@@ -5,24 +5,28 @@ import TrackActions from "@/components/track/track-actions";
 import TrackHeader from "@/components/track/track-header";
 import TrackMap from "@/components/track/track-map";
 import TrackStatusTimeline from "@/components/track/track-status-timeline";
+import { businessConfig } from "@/config/business";
 
 export default function TrackPage() {
-  const params = useParams(); // ✅ client hook
-  const bookingId = params?.bookingId || "NM-230912";
+  const params = useParams();
+  const bookingId = params?.bookingId || "RP-251215";
+
+  // 🧭 Dynamic business details
+  const { name, owner, contact, address } = businessConfig;
 
   const booking = {
     id: bookingId,
-    pickup: "Sector 62, Noida",
-    drop: "Gurugram, Haryana",
-    vehicle: "Tata Ace",
+    pickup: `${address.line1}, ${address.city}`,
+    drop: "Ghaziabad, Uttar Pradesh",
+    vehicle: "Tata 407",
     driver: {
-      name: "Kamlesh Kumar",
-      phone: "+91-98xxxxxx00",
+      name: owner,
+      phone: contact.phone,
     },
-    eta: "35 mins",
+    eta: "40 mins",
     status: "enroute",
-    // 👇 Add coordinates (Noida example)
-    location: { lat: 28.628, lng: 77.364 },
+    // Approx coordinates for Noida Sector 2
+    location: { lat: 28.583, lng: 77.318 },
   };
 
   return (

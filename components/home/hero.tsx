@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format, addMonths } from "date-fns";
+import { WhatsAppButton } from "../shared/whats-app-button";
 
 const quoteSchema = z.object({
   pickup: z.string().min(3, "Pickup location is required"),
@@ -290,19 +291,7 @@ export default function HeroSection() {
                     >
                       Get Estimate
                     </Button>
-
-                    <Button
-                      variant="outline"
-                      className="w-full rounded-full border-primary/30 text-primary hover:bg-primary/5"
-                      onClick={() =>
-                        window.open(
-                          "https://wa.me/919876543210?text=Hi! I'm interested in your product",
-                          "_blank"
-                        )
-                      }
-                    >
-                      Chat on WhatsApp
-                    </Button>
+                    <WhatsAppButton />
                   </div>
                 </div>
               </form>
